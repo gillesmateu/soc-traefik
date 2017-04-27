@@ -1,0 +1,29 @@
+# Log
+traefikLogsFile = "/var/log/traefik.log"
+accessLogsFile = "/var/log/access.log"
+logLevel = "INFO"
+
+# Entrypoints
+defaultEntryPoints = ["http","https"]
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+     [entryPoints.http.redirect]
+       entryPoint = "https"
+  [entryPoints.https]
+   address = ":443"
+     [entryPoints.https.tls]
+       [[entryPoints.https.tls.certificates]]
+       CertFile = "/traefik.crt"
+       KeyFile = "/traefik.key"
+
+# Web UI
+[web]
+address = "0.0.0.0:8080"
+ReadOnly = false
+
+# Docker Backend
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+domain = "tp.imerir"
+watch = true
