@@ -25,5 +25,5 @@ ReadOnly = false
 # Docker Backend
 [docker]
 endpoint = "unix:///var/run/docker.sock"
-domain = "tp.imerir"
+domain = "soc.imerir"
 watch = true
